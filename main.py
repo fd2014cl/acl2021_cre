@@ -250,7 +250,6 @@ def evaluate_strict_no_mem_model(config, encoder, classifier, test_data, seen_re
     return correct/n
 
 if __name__ == '__main__':
-
     parser = ArgumentParser(
         description="Config for lifelong relation extraction (classification)")
     parser.add_argument('--config', default='config.ini')
@@ -320,6 +319,7 @@ if __name__ == '__main__':
             #     train_data_for_replay += memorized_samples[relation]
             # train_simple_model(config, encoder, classifier, train_data_for_replay, config.step2_epochs)
 
+            # re-generate prototypes
             for relation in current_relations:
                 temp_mem[relation] = select_data(config, encoder, training_data[relation])
                 temp_protos.append(get_proto(config, encoder, temp_mem[relation]))
